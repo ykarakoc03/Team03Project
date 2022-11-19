@@ -87,7 +87,7 @@ public class function {
                 girisPaneli();
                 break;
             default:
-                System.out.println("adam bir şey girrr :( ");
+                System.out.println("Yanlış giriş yapıldı. Lütfen tekrar deneyiniz  ");
                 islemMenusu(liste);
 
                 break;
@@ -130,7 +130,7 @@ public class function {
         private static void ekle (List < Personal > liste) {
             tcKontrol();//tc alınıp kontrol ediliyor
             if ((kisiKontrol(teacherListesi) || (kisiKontrol(studendListesi)))) {
-                System.out.println("Girdiğiniz kimlik numarası ile nevcut bir kayıt bulunmaktadır.Kimlik numaranızı kontrol ediniz");
+                System.out.println("Girdiğiniz kimlik numarası ile mevcut bir kayıt bulunmaktadır.Kimlik numaranızı kontrol ediniz");
                 islemMenusu(liste);
             }
             System.out.print("ad soyad giriniz : ");
@@ -148,9 +148,9 @@ public class function {
                 studendListesi.add(student);
 
             } else {//kisiTuru öğrenci ise if çalısir değilse kisiTuru öğretmen demektir ki else body çalışır
+                scan.nextLine();//dummy
                 System.out.print("sicil No giriniz : ");
                 String sicilNo = scan.nextLine();
-                scan.nextLine();//dummy
                 System.out.print("bolum giriniz : ");
                 String bolum = scan.nextLine();
                 Teacher ogretmen = new Teacher(adSoyad, girilenKimlikNo, yas, bolum, sicilNo);//p'li cons ogrtm obj create edildi

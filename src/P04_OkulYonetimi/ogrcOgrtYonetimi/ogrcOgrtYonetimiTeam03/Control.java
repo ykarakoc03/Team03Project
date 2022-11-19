@@ -16,7 +16,7 @@ public class Control {
                 throw new Exception();
             }
         } catch (Exception e) {
-            System.out.println("Tc Kimlik numarası 11 ralamdan oluşmalı");
+            System.out.println("Tc Kimlik numarası 11 rakamdan oluşmalı");
             scan.nextLine();//dummy
             girisPaneli();
         }
@@ -35,14 +35,16 @@ public class Control {
 
     public static void yasKontrol(int yas) {
 
+
         try {
+
             if ((yas < 7 || yas > 23)&&kisiTuru.equalsIgnoreCase("OGRENCI")) {
-                throw new Exception();
+                throw new Exception("Ögrenci icin yaş aralıgı 7-23, tekrar deneyiniz .");
             } else if ((yas < 22 || yas > 65)&&kisiTuru.equalsIgnoreCase("OGRETMEN")) {
-                throw new Exception();
+                throw new Exception("Ögretmen icin yaş aralıgı 22-65, tekrar deneyiniz .");
             }
         } catch (Exception e) {
-            System.out.println("Hatalı yas girişi yapıldı");
+            System.out.println(e.getMessage());
             girisPaneli();
         }
     }
