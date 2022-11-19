@@ -11,7 +11,13 @@ public class Ogretmen extends Kisi{
         this.sicilNo = sicilNo;
 
     }
+    public Ogretmen(String adSoyad, String kimlikNo, int yas, String brans, String sicilNo) {
+        super(adSoyad, kimlikNo, yas);
+        this.brans = brans;
+        this.sicilNo=sicilNo;
 
+
+    }
     @Override
     public String toString() {
         return "Ogretmen{" +super.toString()+
@@ -20,13 +26,7 @@ public class Ogretmen extends Kisi{
                 "} " ;
     }
 
-    public Ogretmen(String adSoyad, String kimlikNo, int yas, String brans, String sicilNo) {
-        super(adSoyad, kimlikNo, yas);
-        this.brans = brans;
-        this.sicilNo=sicilNo;
 
-
-    }
 
     public String getBrans() {
         return brans;
