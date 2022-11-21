@@ -3,7 +3,7 @@ package JavaProjects.ClaruswayStore;
 import java.util.ArrayList;
 
 public class Notebook extends Product {
-    static int nId = 1;
+    static int nId = 101;
 
     ArrayList<Notebook> notebooks = new ArrayList<>();
 
