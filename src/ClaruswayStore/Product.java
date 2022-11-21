@@ -16,7 +16,7 @@ public abstract class Product {
 
     abstract void menu();
 
-    abstract void addItem();
+    abstract  void addItem();
 
     abstract void getProducts();
 

@@ -3,23 +3,24 @@ package JavaProjects.ClaruswayStore;
 import java.util.ArrayList;
 
 public class Notebook extends Product {
-    static int nId = 101;
+    static int nId = 1000;
 
     ArrayList<Notebook> notebooks = new ArrayList<>();
 
     public Notebook() {//addItem() methodu ile ürün oluşturabilmek için parametresiz const.
+        addItem();
     }
 
     public Notebook(String name, double price, double discountRate, int amount, String brand, double screenSize, String ram, String memory) {
-        this.id = nId++;
-        this.name = name;
-        this.price = price;
-        this.discountRate = discountRate;
-        this.amount = amount;
-        this.brand = brand;
-        this.screenSize = screenSize;
-        this.ram = ram;
-        this.memory = memory;
+        super.id = nId++;
+        super.name = name;
+        super.price = price;
+        super.discountRate = discountRate;
+        super.amount = amount;
+        super.brand = brand;
+        super.screenSize = screenSize;
+        super.ram = ram;
+        super.memory = memory;
     }
 
 
@@ -66,30 +67,40 @@ public class Notebook extends Product {
     }
 
     @Override
-    void addItem() {//name,price,discountRate,amount,brand,screenSize,ram,memory
+    public void addItem() {//name,price,discountRate,amount,brand,screenSize,ram,memory
         System.out.println("Ürünün ismini giriniz: ");
-        this.name = scanner.nextLine();
+        String yname = scanner.nextLine();
         System.out.println("Ürünün fiyatını giriniz: ");
-        this.price = scanner.nextDouble();
+        double yprice = scanner.nextDouble();
         System.out.println("Ürünün indirim oranını giriniz: ");
-        this.discountRate = scanner.nextDouble();
+        double ydiscountRate = scanner.nextDouble();
         System.out.println("Ürünün miktarını giriniz: ");// Miktarı static arttırıp azaltacak şekilde düzenlenmeli!!!
-        this.amount = scanner.nextInt();
+        int yamount = scanner.nextInt();
         System.out.println("Ürünün markasını giriniz: ");// marka classı ile baglantı kurulup düzeltilmeli!!!
-        this.brand = scanner.nextLine();
+        scanner.nextLine();
+        String ybrand = scanner.nextLine();
         System.out.println("Ürünün ekran boyutunu giriniz: ");
-        this.screenSize = scanner.nextDouble();
+        double yscreenSize = scanner.nextDouble();
         System.out.println("Ürünün ram miktarını giriniz giriniz: ");
-        this.ram = scanner.nextLine();
+        scanner.nextLine();
+        String yram = scanner.nextLine();
         System.out.println("Ürünün dahili hafıza miktarını giriniz: ");
-        this.memory = scanner.nextLine();
-        Notebook notebookObj = new Notebook();
-        notebooks.add(notebookObj);
-
+        String ymemory = scanner.nextLine();
+        if (!(yamount==1)){
+            for (int i=0; i<yamount;i++ ){
+                Notebook notebookObj = new Notebook(yname,yprice,ydiscountRate,yamount,ybrand,yscreenSize,yram,ymemory);
+                notebooks.add(notebookObj);
+                System.out.println("if " +toString());
+            }
+        } else {
+            Notebook notebookObj = new Notebook(yname, yprice, ydiscountRate, yamount, ybrand, yscreenSize, yram, ymemory);
+            notebooks.add(notebookObj);
+            System.out.println("else "+toString());
+        }
     }
 
     @Override
-    void getProducts() {
+    public void getProducts() {
         for (Notebook product : notebooks) {
             System.out.println(toString());
             System.out.println("----------------------------------------------" +
