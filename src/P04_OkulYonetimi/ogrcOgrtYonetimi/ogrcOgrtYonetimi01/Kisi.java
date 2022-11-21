@@ -17,14 +17,17 @@ public class Kisi {
     }
 
     public String getAdSoyad() {
+
         return adSoyad;
     }
 
     public void setAdSoyad(String adSoyad) {
+
         this.adSoyad = adSoyad.toUpperCase();
     }
 
     public String getKimlikNo() {
+
         return kimlikNo;
     }
 
@@ -37,7 +40,7 @@ public class Kisi {
         return yas;
     }
 
-    public void setYas(int yas) {
+    public void setYas(int yas) {// try catch blogu atılabılır
         if (yas < 0) {
             this.yas = -yas;
         } else
