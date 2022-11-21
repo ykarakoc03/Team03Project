@@ -51,4 +51,6 @@ deleteItem() → Override edilmelidir.  Silme işlemi yapılmalıdır.
 brandFilter() → Filtreleme işlemleri yapılmalıdır.
 Main Class ı Metotları
 ***
-Programın çalışabilmesi için obj. create etmek ve programı çalıştırmak için kullanılmalıdır
+Programın çalışabilmesi için obj. create etmek ve programı çalıştırmak için kullanılmalıdı
+asdads
+sdsd
