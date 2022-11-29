@@ -5,23 +5,27 @@ import java.util.List;
 
 public class Brand {
 
-    private static int no = 100;
-    private int id;//ürün id si
-    private String name;// Ürün markası
-    static List<Brand> brandList = new ArrayList<>(); //= Ürün marka listesi
+    private int id;
+    private String name;
+    private static List<Brand> brandList = new ArrayList<>();
 
-
-
-    public Brand() {
+    static {
+        createBrands();
     }
 
-    public Brand(String name) {
-        this.name = name;
-        this.id = no++;
+
+
+    public Brand(int brandId, String brandName) {
+        this.id = brandId;
+        this.name = brandName;
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -32,32 +36,39 @@ public class Brand {
         this.name = name;
     }
 
-    public void createBrands(String name) {//Markaların marka listesine atıldığı ve brandList listesine ekleme işlemi yapıldı.
-        Brand marka=new Brand(name);
-        brandList.add(marka);
+
+    public static void createBrands(){
+        //Oluşturmuş olduğum List e ekleme yapıldı.
+        //Brand objesi olmalıydı. -> new Brand(1,"CW");
+        brandList.add(new Brand(1,"Samsung"));
+        brandList.add(new Brand(2,"Lenovo"));
+        brandList.add(new Brand(3,"Apple"));
+        brandList.add(new Brand(4,"Huawei"));
+        brandList.add(new Brand(5,"HP"));
+        brandList.add(new Brand(6,"Asus"));
+        brandList.add(new Brand(7,"LG"));
+        brandList.add(new Brand(8,"Monster"));
+        brandList.add(new Brand(9,"Casper"));
     }
 
-    public static void printBrands() {//Marka isimlerinin konsolda görünmesini sağlayacak bir metot oluştu
+    public static void printBrands(){
+        System.out.println("... Marka Listesi ...");
+        //En temelde yapmak istediğim şey --> System.out.println("BrandName");
 
-        for (Brand y : brandList) {
-            System.out.println(y);
+        for (Brand brand : brandList) {
+            System.out.println(brand.getId() + " " + brand.getName());
         }
 
+        System.out.println("----------------------------------");
     }
 
-    public String getBrand(int id) {//Parametre olarak marka id sini alarak bizlere ilgili markayı return etmeyi sağlayan bir metot oluştu
-        for (Brand x : brandList) {
-            if (x.getId() == id) {
-                return x.getName();
+    public static Brand getBrand(int id){
+        for (Brand b : brandList) {
+            if (id == b.getId()){
+                return b;
             }
         }
-        return "Bu id'ye sahip bir marka bulunmamaktadır.";
+        return null;
     }
 
-    @Override
-    public String toString() {
-        return
-                "Ürün Markası= " + name + "Ürün Id=" + id ;
-
-    }
 }

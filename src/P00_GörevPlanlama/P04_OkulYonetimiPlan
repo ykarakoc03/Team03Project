@@ -12,3 +12,6 @@ yeni
 
 2.Mucahıt bey
 3.faruk bey
+
+
+System.out.printf("| %-2s | %-25s | %-15s | %-15s | %-12s | %-18s | %-6s | %-17s | %-10s | \n"

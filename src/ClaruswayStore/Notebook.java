@@ -1,31 +1,28 @@
 package JavaProjects.ClaruswayStore;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Notebook extends Product {
     static int nId = 1000;
-
+    Scanner scanner = new Scanner(System.in);
     ArrayList<Notebook> notebooks = new ArrayList<>();
 
-    public Notebook() {//addItem() methodu ile ürün oluşturabilmek için parametresiz const.
-        addItem();
+    //public Notebook(int id, String name, double price, double discountRate, int amount, Brand brand, double screenSize, int ram, int memory) {
+    //    super(id, name, price, discountRate, amount, brand, screenSize, ram, memory);
+    //}
+
+
+    public Notebook(String name, double price, double discountRate, int amount, Brand brand, double screenSize, int ram, int memory) {
+        super(nId, name, price, discountRate, amount, brand, screenSize, ram, memory);
+        nId++;
     }
 
-    public Notebook(String name, double price, double discountRate, int amount, String brand, double screenSize, String ram, String memory) {
-        super.id = nId++;
-        super.name = name;
-        super.price = price;
-        super.discountRate = discountRate;
-        super.amount = amount;
-        super.brand = brand;
-        super.screenSize = screenSize;
-        super.ram = ram;
-        super.memory = memory;
+    public Notebook() {
     }
-
 
     @Override
-    void menu() {//(Notebook ekleme, listesinin görüntülenmesi, silme, markaya göre filtreleme)
+    public void menu() {//(Notebook ekleme, listesinin görüntülenmesi, silme, markaya göre filtreleme)
 
         System.out.println("**********************************    " + " \nNoteBook Ekranı\n" + "**********************************");
         System.out.println("1- Notebook Ekleme " +
@@ -34,8 +31,9 @@ public class Notebook extends Product {
                 "\n4- Markaya Göre Filitreleme" +
                 "\nQ- CIKIS ");
         System.out.print("Lutfen yapmak istediginiz islemi giriniz : ");
-        String secim = scanner.nextLine().toUpperCase();
-        switch (secim) {
+
+        String options = scanner.nextLine().toUpperCase();
+        switch (options) {
             case "1"://1- Notebook Ekleme
                 addItem();
                 menu();
@@ -45,16 +43,16 @@ public class Notebook extends Product {
                 menu();
                 break;
             case "3"://3- Notebook Silme"
-
+                deleteItem();
                 menu();
                 break;
             case "4"://4- Markaya Göre Filitreleme
-
+                brandFilter();
                 menu();
                 break;
             case "Q"://
-                deleteItem();
-                //cıkıs();
+                Store claruswayStore = new Store();
+                claruswayStore.run();
                 break;
             default:
                 System.out.println("hatalı giriş yaptınız  :(");
@@ -69,63 +67,70 @@ public class Notebook extends Product {
     @Override
     public void addItem() {//name,price,discountRate,amount,brand,screenSize,ram,memory
         System.out.println("Ürünün ismini giriniz: ");
-        String yname = scanner.nextLine();
+        String name = scanner.nextLine();
         System.out.println("Ürünün fiyatını giriniz: ");
-        double yprice = scanner.nextDouble();
+        double price = scanner.nextDouble();
         System.out.println("Ürünün indirim oranını giriniz: ");
-        double ydiscountRate = scanner.nextDouble();
+        double discountRate = scanner.nextDouble();
         System.out.println("Ürünün miktarını giriniz: ");// Miktarı static arttırıp azaltacak şekilde düzenlenmeli!!!
-        int yamount = scanner.nextInt();
-        System.out.println("Ürünün markasını giriniz: ");// marka classı ile baglantı kurulup düzeltilmeli!!!
+        int amount = scanner.nextInt();
         scanner.nextLine();
-        String ybrand = scanner.nextLine();
+        System.out.println("Ürünün markasını listeden seçiniz : ");
+        Brand.printBrands();
+        Brand brand = Brand.getBrand(scanner.nextInt());
         System.out.println("Ürünün ekran boyutunu giriniz: ");
-        double yscreenSize = scanner.nextDouble();
+        double screenSize = scanner.nextDouble();
         System.out.println("Ürünün ram miktarını giriniz giriniz: ");
         scanner.nextLine();
-        String yram = scanner.nextLine();
+        int ram = scanner.nextInt();
         System.out.println("Ürünün dahili hafıza miktarını giriniz: ");
-        String ymemory = scanner.nextLine();
-        if (!(yamount==1)){
-            for (int i=0; i<yamount;i++ ){
-                Notebook notebookObj = new Notebook(yname,yprice,ydiscountRate,yamount,ybrand,yscreenSize,yram,ymemory);
+        int memory = scanner.nextInt();
+        if (!(amount == 1)) {
+            for (int i = 0; i < amount; i++) {
+                Notebook notebookObj = new Notebook(name, price, discountRate, amount, brand, screenSize, ram, memory);
                 notebooks.add(notebookObj);
-                System.out.println("if " +toString());
             }
         } else {
-            Notebook notebookObj = new Notebook(yname, yprice, ydiscountRate, yamount, ybrand, yscreenSize, yram, ymemory);
+            Notebook notebookObj = new Notebook(name, price, discountRate, amount, brand, screenSize, ram, memory);
             notebooks.add(notebookObj);
-            System.out.println("else "+toString());
+            System.out.println("Eklenen ürünün id'si: " + notebookObj.getId());
         }
+
     }
 
     @Override
     public void getProducts() {
         for (Notebook product : notebooks) {
-            System.out.println(toString());
+            System.out.println(product.toString());
             System.out.println("----------------------------------------------" +
                     "-----------------------------------------------------------------");
         }
     }
 
     void brandFilter() {//→ Filtreleme işlemleri yapılmalıdır.
-
-
+        Brand.printBrands();
+        System.out.println("filitrelemek istediğiniz markayi seçiniz :");
+        int filitrele = scanner.nextInt();
+        if (notebooks.stream().anyMatch(t -> t.getBrand().getId() == filitrele))
+            notebooks.stream().filter(t -> t.getBrand().getId() == filitrele).forEach(t -> System.out.println(t));
+        else System.out.println("Aradığınız ürün mevcut değil");
 
     }
 
 
     @Override
-    void deleteItem() {
+    public void deleteItem() {
+        getProducts();
         System.out.println("Silmek istediginiz ürün Id'sini giriniz :");//ürün miktarının hepsimi silinecek yada biri mi silinecek
         int silinecekId = scanner.nextInt();                             // veya eklenen her bir ürüne id leri farklımı atanmalı
         boolean flag = false;                                            // stog miktarı düzenlenmeli!!!
         for (Notebook product : notebooks) {
-            if (silinecekId == product.id)
+            if (silinecekId == product.getId()) {
                 notebooks.remove(product);
-            flag = true;
-            System.out.println("Girdiğiniz id'ye ait ürün silindi...");
-            break;
+                flag = true;
+                System.out.println("Girdiğiniz id'ye ait ürün silindi...");
+                break;
+            }
         }
         if (flag = false) System.out.println("Aradığınız ürün mevcut değil.");
     }
@@ -133,17 +138,19 @@ public class Notebook extends Product {
     @Override
     public String toString() {
         return "Notebook " +
-                "| id=" + id +
-                "| name='" + name + '\'' +
-                "| price=" + price +
-                "| discountRate=" + discountRate +
-                "| amount=" + amount +
-                "| brand='" + brand + '\'' +
-                "| screenSize=" + screenSize +
-                "| ram='" + ram + '\'' +
-                "| memory='" + memory + '\'' +
+                "| id=" + getId() +
+                "| name='" + getName() +
+                "| price=" + getPrice() +
+                "| discountRate=" + getDiscountRate() +
+                "| amount=" + getAmount() +
+                "| brand='" + getBrand().getName() +
+                "| screenSize=" + getScreenSize() +
+                "| ram='" + getRam() +
+                "| memory='" + getMemory() +
                 "|";
     }
 
 
 }
+
+
