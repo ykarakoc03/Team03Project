@@ -57,7 +57,7 @@ public class Vatandas {
 
 
     public void selecetOption() {
-        System.out.println("yapmak istediğiniz işlemi seçin \n kayıt için 1: \n sorgulamak için 2: \n silmek için 3:");
+        System.out.println("yapmak istediğiniz işlemi seçin \n kayıt için :1 \n sorgulamak için :2 \n silmek için :3 \n çıkış için :4");
         int islem = sc.nextInt();
 
         switch (islem) {
@@ -71,9 +71,14 @@ public class Vatandas {
             case 3:
                 remooooveİnfo();
                 selecetOption();
+            case 4:
+                cıkıs();
+                break;
+
             default:
                 System.out.println("hatalı giris");
-                selecetOption();
+                //selecetOption();
+
         }
     }
 
@@ -87,6 +92,9 @@ public class Vatandas {
 
         }
         return flag;
+    }
+    public void cıkıs(){
+        System.out.println("çıkış yapıldı");
     }
 
 
