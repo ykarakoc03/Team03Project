@@ -1,0 +1,19 @@
+1) Arac Abstract create edilmeli Mücahit H.
+VAriable: model,marka, yakıt, vites,
+
+2) Arac Class extend abstract edilmeli Mücahit H.
+VAriable: model,marka, yakıt, vites, ücret
+
+3) Filo clas
+arac obje ve listesi olmalı,
+müstri obj ve kistesi
+
+4)kisi class Yakup K
+ad,soyat, telefon,adres,mail,tc
+
+kiralanan arac kiste kirada gösterilecek
+anam menüdeki listelede hangileri kirada hangileri boşta görülecek
+araç talep ederken sadece kiralanabilecek araçlar gösterilecek
+
+5)menü clası Esma H.
+kullanıcı menüsü

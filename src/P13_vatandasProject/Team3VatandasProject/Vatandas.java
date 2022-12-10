@@ -95,6 +95,7 @@ public class Vatandas {
     }
     public void cıkıs(){
         System.out.println("çıkış yapıldı");
+        System.exit(0);
     }
 
 

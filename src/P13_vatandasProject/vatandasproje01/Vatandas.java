@@ -164,6 +164,7 @@ public class Vatandas {
 
     public void cikis() {
         System.out.println("Bizi tercih ettiginiz icin tesekkurler iyi gunler dileriz...");
+        System.exit(0);
     }
 
     public void listeleme() {
