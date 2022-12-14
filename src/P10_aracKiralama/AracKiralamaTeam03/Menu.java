@@ -1,6 +1,8 @@
 package JavaProjects.P10_aracKiralama.AracKiralamaTeam03;
 
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class Menu {
     public static final String W = "\u001B[37m";
@@ -34,4 +36,30 @@ public class Menu {
                 break;
         }
     }
+    public void aracTalep(){
+        //liste gelecek
+        System.out.println("kiralamak istediğiniz aracın Id sini giriniz: ");
+        int aracId=scan.nextInt();
+        Stream<Arabalar> arabaKontrol =Filo.aracListesi.stream().filter(t->t.getId()==aracId);
+        System.out.println(Arrays.toString(arabaKontrol.toArray()));
+
+       if (Filo.aracListesi.stream().noneMatch(t->t.getId()==aracId)) {//araç listede olup olmadığı kontrol edildi
+           System.out.println("girdiğiniz araç mevcut değil");
+       }else if (Filo.aracListesi.stream().anyMatch(t->t.getAracDurumu().equals("Pasif"))){//arac durumu pasi veya aktif kontrol
+           System.out.println("Seçilen araç Kiradadır");
+       }else System.out.println("işleminiz devam ediyor");
+       Filo.aracListesi.stream().filter(t->t.getId()==aracId).forEach(t->t.setAracDurumu("Pasif"));//seçilen aracı pasif yapma
+       // System.out.println(Filo.aracListesi.get(1));
+
+    }
+
+    public static void main(String[] args) {
+        Menu menu=new Menu();
+        menu.aracTalep();
+    }
+
+
+
+
+
 }

@@ -5,17 +5,17 @@ public class Kisi {
     String ad;
     String soyad;
     String telefon;
-    String mail;
+    String adres;
 
     public Kisi() {
     }
 
-    public Kisi(String kimlikNo, String ad, String soyad, String telefon, String mail) {
+    public Kisi(String kimlikNo, String ad, String soyad, String telefon, String adres) {
         this.kimlikNo = kimlikNo;
         this.ad = ad;
         this.soyad = soyad;
         this.telefon = telefon;
-        this.mail = mail;
+        this.adres = adres;
     }
 
 
@@ -52,11 +52,11 @@ public class Kisi {
     }
 
     public String getMail() {
-        return mail;
+        return adres;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setMail(String adres) {
+        this.adres = adres;
     }
 
     @Override
@@ -66,6 +66,6 @@ public class Kisi {
                 ", ad='" + ad + '\'' +
                 ", soyad='" + soyad + '\'' +
                 ", telefon='" + telefon + '\'' +
-                ", mail='" + mail + '\'' ;
+                ", adres='" + adres + '\'' ;
     }
 }
